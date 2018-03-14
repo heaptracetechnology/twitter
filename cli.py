@@ -47,6 +47,13 @@ class Cli:
         twitter = Twitter()
         twitter.api.create_friendship(who)
 
+    @main.command()
+    @click.argument('who')
+    def followers(who):
+        twitter = Twitter()
+        followers = twitter.api.followers_ids(who)
+        click.echo(followers)
+
 
 if __name__ == '__main__':
     Cli.main()
