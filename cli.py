@@ -34,6 +34,13 @@ class Cli:
         twitter = Twitter()
         twitter.api.update_status(content)
 
+
+    @main.command()
+    @click.argument('tweet_id')
+    def retweet(tweet_id):
+        twitter = Twitter()
+        twitter.api.retweet(tweet_id)
+
     @main.command()
     @click.argument('who')
     def follow(who):
