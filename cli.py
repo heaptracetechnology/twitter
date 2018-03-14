@@ -21,6 +21,11 @@ class Cli:
 
     @click.group()
     def main():
+        """
+        Twitter container for Asyncy. Requires OAuth credential to be set in
+        environment: CONSUMER_SECRET, CONSUMER_KEY, ACCESS_TOKEN,
+        ACCESS_TOKEN_SECRET
+        """
         pass
 
     @main.command()
