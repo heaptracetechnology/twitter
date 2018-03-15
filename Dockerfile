@@ -1,8 +1,8 @@
-FROM          alpine:3.7
+FROM          python
 
-ADD           install.sh /install.sh
+COPY          . /app
 ADD           entrypoint.sh /entrypoint.sh
-ADD           cli.py /cli.py
-RUN           /install.sh && rm -f /install.sh
+WORKDIR       /app
+RUN           python setup.py install
 
 ENTRYPOINT   ["/entrypoint.sh"]
