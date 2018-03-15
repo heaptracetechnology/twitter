@@ -4,7 +4,7 @@ import os
 import tweepy
 
 
-class Api:
+class Twitter:
 
     def __init__(self):
         consumer_secret = os.getenv('CONSUMER_SECRET')
