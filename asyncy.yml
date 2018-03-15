@@ -1,0 +1,29 @@
+commands:
+    follow:
+        help: Follow an user
+        args:
+            - name: who
+              type: string
+    followers:
+        help: List an user's followers
+        args:
+            - name: who
+              type: string
+    retweet:
+        help: Retweet a tweet
+        args:
+            - name: tweet_id
+              type: string
+    tweet:
+        help: Tweet a message
+        args:
+            - name: message
+              type: string
+
+volume: false
+
+env:
+    CONSUMER_KEY:
+    CONSUMER_SECRET:
+    ACCESS_TOKEN:
+    ACESS_TOKEN_SECRET:
