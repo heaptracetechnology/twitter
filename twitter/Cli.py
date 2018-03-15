@@ -1,20 +1,7 @@
-#!/usr/bin/env python
-import os
-import sys
-import tweepy
+# -*- coding: utf-8 -*-
 import click
 
-
-class Twitter:
-
-    def __init__(self):
-        consumer_secret = os.getenv('CONSUMER_SECRET')
-        consumer_key = os.getenv('CONSUMER_KEY')
-        access_token = os.getenv('ACCESS_TOKEN')
-        access_token_secret = os.getenv('ACESS_TOKEN_SECRET')
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        auth.set_access_token(access_token, access_token_secret)
-        self.api = tweepy.API(auth)
+from .Twitter import Twitter
 
 
 class Cli:
@@ -28,32 +15,31 @@ class Cli:
         """
         pass
 
+    @staticmethod
     @main.command()
     @click.argument('content')
     def tweet(content):
         twitter = Twitter()
         twitter.api.update_status(content)
 
-
+    @staticmethod
     @main.command()
     @click.argument('tweet_id')
     def retweet(tweet_id):
         twitter = Twitter()
         twitter.api.retweet(tweet_id)
 
+    @staticmethod
     @main.command()
     @click.argument('who')
     def follow(who):
         twitter = Twitter()
         twitter.api.create_friendship(who)
 
+    @staticmethod
     @main.command()
     @click.argument('who')
     def followers(who):
         twitter = Twitter()
         followers = twitter.api.followers_ids(who)
         click.echo(followers)
-
-
-if __name__ == '__main__':
-    Cli.main()
