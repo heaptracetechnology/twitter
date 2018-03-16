@@ -28,21 +28,21 @@ twitter follow "handle"
 
 ```python
 # list an user's followers
-followers_list = followers "handle"
+followers_list = twitter followers "handle"
 ```
 
 ### Retweet
 
 ```python
 # retweet specified tweet
-retweet tweet_id
+twitter retweet tweet_id
 ```
 
 ### Tweet
 
 ```python
 # tweets a message
-tweet "message"
+twitter tweet "message"
 ```
 
 ## Environment
