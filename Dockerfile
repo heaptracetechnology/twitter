@@ -1,4 +1,4 @@
-FROM          python
+FROM          jfloff/alpine-python:recent
 
 COPY          . /app
 ADD           entrypoint.sh /entrypoint.sh
