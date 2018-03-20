@@ -1,4 +1,4 @@
-# Asyncy-twitter
+# Twitter for Asyncy
 
 ![Asyncy container](https://img.shields.io/badge/asyncy_container-ready-brightgreen.svg?style=for-the-badge)
 [![Docker Build Status](https://img.shields.io/docker/build/asyncy/asyncy-twitter.svg?style=for-the-badge)](https://hub.docker.com/r/asyncy/asyncy-twitter/)
@@ -52,4 +52,4 @@ Requires environment variables:
  - CONSUMER_KEY
  - CONSUMER_SECRET
  - ACCESS_TOKEN
- - ACESS_TOKEN_SECRET
+ - ACCESS_TOKEN_SECRET
