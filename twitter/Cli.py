@@ -5,6 +5,13 @@ from .Twitter import Twitter
 
 
 class Cli:
+    
+    @staticmethod
+    def _strip_who(who):
+        who = who.replace('https://twitter.com/', '')
+        who = who.replace('http://twitter.com/', '')
+        who = who.replace('@', '')
+        return who
 
     @click.group()
     def main():
@@ -33,6 +40,7 @@ class Cli:
     @main.command()
     @click.argument('who')
     def follow(who):
+        who = Cli._strip_who(who)
         twitter = Twitter()
         twitter.api.create_friendship(who)
 
@@ -40,6 +48,7 @@ class Cli:
     @main.command()
     @click.argument('who')
     def followers(who):
+        who = Cli._strip_who(who)
         twitter = Twitter()
         followers = twitter.api.followers_ids(who)
         click.echo(followers)
