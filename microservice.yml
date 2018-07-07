@@ -82,7 +82,8 @@ commands:
     arguments:
       hashtag:
         type: string
-        help: Hashtag to track
+        help: Filter tweets that container this hashtag
+        required: true
       tweets_only:
         type: boolean
         help: Twitter stream several types of events.
