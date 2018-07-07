@@ -1,31 +1,84 @@
 commands:
+  # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/post-friendships-create.html
   follow:
     help: Follow an user
     arguments:
-      who:
+      handle:
         type: string
-  followers:
-    help: List an user's followers
+        help: The screen name of the user to follow.
+      user:
+        type: int
+        help: The ID of the user to follow.
+      follow:
+        type: boolean
+        help: Enable notifications for the target user.
+    output:
+      type: map
+      help: The user object who was followed
+
+  # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/post-friendships-destroy
+  unfollow:
+    help: Unfollow an user
     arguments:
-      who:
+      handle:
         type: string
+        help: The screen name of the user to unfollow.
+      user:
+        type: int
+        help: The ID of the user to unfollow.
+    output:
+      type: map
+      help: The user object who was unfollowed
+
+  # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-followers-list
+  followers:
+    help: Returns a cursored collection of user objects for users following the specified user.
+    arguments:
+      handle:
+        type: string
+        help: The screen name of the user for whom to return results.
+      user:
+        type: int
+        help: The ID of the user for whom to return results.
+      cursor:
+        type: int
+        help: Causes the results to be broken into pages. If no cursor is provided, a value of -1 will be assumed, which is the first “page.”
+        range:
+          min: -1
+      count:
+        type: int
+        help: The number of users to return per page, up to a maximum of 200. Defaults to 20.
+        range:
+          min: 1
+          max: 200
+      skip_status:
+        type: boolean
+        help: When set to either true, statuses will not be included in the returned user objects. If set to any other value, statuses will be included.
+    output:
+      type: map
+
   retweet:
     help: Retweet a tweet
     arguments:
-      tweet_id:
-        type: string
+      tweet:
+        type: int
+    output:
+      type: map
+
   tweet:
     help: Tweet a message
     arguments:
-      message:
+      status:
         type: string
+    output:
+      type: map
 
 environment:
-  CONSUMER_KEY:
+  consumer_key:
     type: string
-  CONSUMER_SECRET:
+  consumer_secret:
     type: string
-  ACCESS_TOKEN:
+  access_token:
     type: string
-  ACCESS_TOKEN_SECRET:
+  access_token_secret:
     type: string

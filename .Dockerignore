@@ -1,9 +1,0 @@
-.circleci
-tests
-.coveragerc
-.travis.yml
-codecov.yml
-LICENSE
-pytest.ini
-setup.cfg
-tox.ini

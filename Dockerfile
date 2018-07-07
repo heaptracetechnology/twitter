@@ -1,8 +1,6 @@
-FROM          jfloff/alpine-python:recent
+FROM          node:alpine
 
-COPY          . /app
-ADD           entrypoint.sh /entrypoint.sh
-WORKDIR       /app
-RUN           python setup.py install
+RUN           npm install twitter
+COPY          app.js /app.js
 
-ENTRYPOINT   ["/entrypoint.sh"]
+ENTRYPOINT   ["node", "/app.js"]
