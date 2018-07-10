@@ -71,8 +71,9 @@ if (cmd == 'tweet') {
       return null;
     }
     request.post({
-      url: process.env.OMG_URL,
+      url: process.env.OMG_ENDPOINT,
       body: JSON.stringify(event),
+      headers: {'Content-Type': 'application/json'},
     }, function (error, response, body) {
         if (error) {
           console.log('error:', error);
