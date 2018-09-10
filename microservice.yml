@@ -65,6 +65,7 @@ commands:
     arguments:
       tweet:
         type: int
+        required: true
     output:
       type: map
 
@@ -79,14 +80,13 @@ commands:
 
   stream:
     help: Stream tweets
-    arguments:
-      hashtag:
-        type: string
-        help: Filter tweets that container this hashtag
-        required: true
-      tweets_only:
-        type: boolean
-        help: Twitter stream several types of events.
+    events:
+      tweet:
+        arguments:
+          hashtag:
+            type: string
+            help: Filter tweets that container this hashtag
+            required: true
     run:
       command: ["node", "/app.js", "stream"]
     output:
