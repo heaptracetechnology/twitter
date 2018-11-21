@@ -1,4 +1,15 @@
 omg: 1
+info:
+  version: 1.0.0
+  title: Twitter
+  description: Twitter as a microservice
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  contact:
+    name: Asyncy
+    url: https://asyncy.com
+    email: hello@asyncy.com
 actions:
   # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/post-friendships-create.html
   follow:
