@@ -10,6 +10,9 @@ info:
     name: Asyncy
     url: https://asyncy.com
     email: hello@asyncy.com
+lifecycle:
+  startup:
+    command: ["python", "/app/app.py"]
 actions:
   # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/post-friendships-create.html
   follow:
@@ -17,16 +20,22 @@ actions:
     arguments:
       handle:
         type: string
+        in: requestBody
         help: The screen name of the user to follow.
       user:
         type: int
+        in: requestBody
         help: The ID of the user to follow.
       follow:
         type: boolean
+        in: requestBody
         help: Enable notifications for the target user.
+    http:
+      path: /follow
+      method: post
+      port: 8000
     output:
       type: map
-      help: The user object who was followed
 
   # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/post-friendships-destroy
   unfollow:
@@ -34,13 +43,18 @@ actions:
     arguments:
       handle:
         type: string
+        in: requestBody
         help: The screen name of the user to unfollow.
       user:
         type: int
+        in: requestBody
         help: The ID of the user to unfollow.
+    http:
+      path: /unfollow
+      method: post
+      port: 8000
     output:
       type: map
-      help: The user object who was unfollowed
 
   # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-followers-list
   followers:
@@ -51,24 +65,33 @@ actions:
     arguments:
       handle:
         type: string
+        in: requestBody
         help: The screen name of the user for whom to return results.
       user:
         type: int
+        in: requestBody
         help: The ID of the user for whom to return results.
       cursor:
         type: int
+        in: requestBody
         help: Causes the results to be broken into pages. If no cursor is provided, a value of -1 will be assumed, which is the first “page.”
         range:
           min: -1
       count:
         type: int
+        in: requestBody
         help: The number of users to return per page, up to a maximum of 200. Defaults to 20.
         range:
           min: 1
           max: 200
       skip_status:
         type: boolean
+        in: requestBody
         help: When set to either true, statuses will not be included in the returned user objects. If set to any other value, statuses will be included.
+    http:
+      path: /followers
+      method: post
+      port: 8000
     output:
       type: map
 
@@ -76,8 +99,13 @@ actions:
     help: Retweet a tweet
     arguments:
       tweet:
+        in: requestBody
         type: int
         required: true
+    http:
+      path: /retweet
+      method: post
+      port: 8000
     output:
       type: map
 
@@ -86,7 +114,12 @@ actions:
     arguments:
       status:
         type: string
+        in: requestBody
         required: true
+    http:
+      path: /tweet
+      method: post
+      port: 8000
     output:
       type: map
 
@@ -95,21 +128,30 @@ actions:
     events:
       tweet:
         arguments:
-          hashtag:
+          filter:
+            in: requestBody
             type: string
             help: Filter tweets that container this hashtag
-            required: true
-    run:
-      command: ["node", "/app.js", "stream"]
-    output:
-      type: map
+        http:
+          port: 8000
+          subscribe:
+            method: post
+            path: /stream/subscribe
+            contentType: application/json
+          unsubscribe:
+            path: /stream/unsubscribe
+            method: post
+        output:
+          type: map
 
 environment:
-  consumer_key:
+  CONSUMER_KEY:
+    required: true
     type: string
-  consumer_secret:
+  CONSUMER_SECRET:
+    required: true
     type: string
-  access_token:
+  ACCESS_TOKEN:
     type: string
-  access_token_secret:
+  ACCESS_TOKEN_SECRET:
     type: string
