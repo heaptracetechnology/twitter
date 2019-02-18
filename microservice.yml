@@ -128,10 +128,12 @@ actions:
     events:
       tweet:
         arguments:
-          filter:
+          track:
             in: requestBody
-            type: string
-            help: Filter tweets that container this hashtag
+            type: any
+            help: |
+              A single string or list of phrases to track.
+              https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters#track
         http:
           port: 8000
           subscribe:

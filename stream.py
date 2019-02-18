@@ -11,9 +11,9 @@ class Stream(threading.Thread):
         self.stopped = False
         self.endpoint = subscription['endpoint']
 
-        if subscription['data'].get('filter'):
+        if subscription['data'].get('track'):
             self.iterator = stream.statuses.filter(
-                track=subscription['data']['filter'])
+                track=subscription['data']['track'])
         else:
             self.iterator = stream.statuses.sample()
 
