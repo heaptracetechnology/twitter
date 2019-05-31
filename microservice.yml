@@ -154,6 +154,8 @@ environment:
     required: true
     type: string
   ACCESS_TOKEN:
+    required: true
     type: string
   ACCESS_TOKEN_SECRET:
+    required: true
     type: string

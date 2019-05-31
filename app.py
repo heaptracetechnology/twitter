@@ -11,12 +11,12 @@ from stream import Stream
 
 app = Flask(__name__)
 
-auth = OAuth(
-    os.getenv('ACCESS_TOKEN'),
-    os.getenv('ACCESS_TOKEN_SECRET'),
-    os.getenv('CONSUMER_KEY'),
-    os.getenv('CONSUMER_SECRET')
-)
+ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
+ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
+CONSUMER_KEY = os.environ['CONSUMER_KEY']
+CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
+
+auth = OAuth(ACCESS_TOKEN, ACCESS_TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
 
 t = Twitter(auth=auth)
 
@@ -63,10 +63,7 @@ subscriptions = {}
 @app.route('/stream/subscribe', methods=['POST'])
 def stream_subscribe():
     data = body()
-    subscriptions.setdefault(
-        data['id'],
-        Stream(auth, data).start()
-    )
+    subscriptions.setdefault(data['id'], Stream(auth, data).start())
     return 'Subscribed'
 
 
