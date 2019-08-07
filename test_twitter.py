@@ -1,5 +1,6 @@
 from http import HTTPStatus
 import sys
+import os
 from stream import Stream
 
 def test_tweet_request(client):
