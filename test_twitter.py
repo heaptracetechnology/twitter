@@ -20,7 +20,7 @@ def test_tweet_request_fail(client):
 
 def test_retweet_request(client):
     data = {
-        "tweet": "1158649787366821888"        
+        "tweet": os.environ['RETWEET_ID']
     }
     url = "/retweet"
     response = client.post(url, json=data)
@@ -36,7 +36,7 @@ def test_retweet_request_fail(client):
 
 def test_follow_user_id_request(client):
     data = {
-        "id": "1156862303859429377"
+        "id": os.environ['USER_ID']
     }
     url = "/follow"
     response = client.post(url, json=data)
@@ -44,7 +44,7 @@ def test_follow_user_id_request(client):
 
 def test_follow_screen_name_request(client):
     data = {
-        "handle": "bhutkar_omkar",
+        "handle": os.environ['SCREEN_NAME']
     }
     url = "/follow"
     response = client.post(url, json=data)
@@ -58,7 +58,7 @@ def test_follow_request_fail(client):
 
 def test_unfollow_id_request(client):
     data = {
-        "id": "1156862303859429377"
+        "id": os.environ['USER_ID']
     }
     url = "/unfollow"
     response = client.post(url, json=data)
@@ -66,7 +66,7 @@ def test_unfollow_id_request(client):
 
 def test_unfollow_screen_name_request(client):
     data = {
-        "screen_name": "bhutkar_omkar",
+        "screen_name": os.environ['SCREEN_NAME']
     }
     url = "/unfollow"
     response = client.post(url, json=data)
@@ -80,7 +80,7 @@ def test_unfollow_request_fail(client):
 
 def test_followers_id_request(client):
     data = {
-        "user": "1156862303859429377",
+        "user": os.environ['RETWEET_ID']
     }
     url = "/followers"
     response = client.post(url, json=data)
@@ -88,7 +88,7 @@ def test_followers_id_request(client):
 
 def test_followers_screen_name_request(client):
     data = {
-        "screen_name": "bhutkar_omkar",
+        "screen_name": os.environ['SCREEN_NAME']
     }
     url = "/followers"
     response = client.post(url, json=data)
