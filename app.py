@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, make_response, request
+from twitter import *
+from twitter.stream import TwitterStream, Timeout, HeartbeatTimeout, Hangup
 import tweepy
 import os
 from http import HTTPStatus
 from json import dumps
 from threading import Thread
-
-from twitter import *
-from twitter.stream import TwitterStream, Timeout, HeartbeatTimeout, Hangup
 
 from stream import Stream
 
@@ -127,6 +126,7 @@ def followers():
     return dumps(resultArray)
 
 subscriptions = {}
+
 
 @app.route('/stream/subscribe', methods=['POST'])
 def stream_subscribe():
