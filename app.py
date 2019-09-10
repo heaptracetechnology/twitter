@@ -142,6 +142,13 @@ def stream_subscribe():
     subscriptions.setdefault(data['id'], Stream(auth, data).start())
     return 'Subscribed'
 
+@app.route('/health', methods=['GET'])
+def health():
+    return dumps(dict(
+            contentType='application/json',
+            data="ok",
+            status=200
+        ))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

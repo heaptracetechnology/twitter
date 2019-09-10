@@ -13,6 +13,10 @@ info:
 lifecycle:
   startup:
     command: ["python", "/app/app.py"]
+health:
+  http:
+    path: /health
+    port: 8000    
 actions:
   # https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/post-friendships-create.html
   follow:
